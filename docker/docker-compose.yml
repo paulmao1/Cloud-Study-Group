@@ -1,0 +1,46 @@
+version: '2'
+networks:
+    front-tier:
+      driver: bridge
+    back-tier:
+      driver: bridge
+services:
+    web:
+        image: paulmao1/paul:web
+        container_name: web
+        hostname: webserver
+        ports: 
+            - 80:80
+        networks:
+            - front-tier
+            - back-tier
+        links:
+            - app
+            - db
+        environment:
+            - APPSERVER=http://app:8080
+            - DBSERVER=db
+        depends_on:
+            - app
+    app:
+        image: paulmao1/paul:app
+        container_name: app
+        hostname: appserver
+        networks:
+            - back-tier
+        links:
+            - db
+        environment: 
+            - DBSERVER=db
+        depends_on:
+                - db
+    db:
+        image: paulmao1/paul:db
+        container_name: db
+        hostname: database
+        networks:
+            - back-tier
+
+
+
+    
