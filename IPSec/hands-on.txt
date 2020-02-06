@@ -1,0 +1,30 @@
+一、安装软件
+1. 在labstage上创建Ubuntu 18.04 
+2. 安装docker
+curl -fsSL https://get.docker.com/ | sh
+systemctl enable docker
+systemctl start docker
+3. 安装docker compose
+apt-get install -y docker-compose
+4. 安装Git
+apt-get install -y git
+
+二、下载文件
+1. 创建目录
+mkdir demo
+cd demo
+2. 下载Dcokerfile 和docker compose
+git clone https://github.com/paulmao1/Cloud-Study-Group.git
+
+三、 依照要求更改配置文件
+left指的是local 机器，right指的是remote机器
+
+四、在二端分别启用Docker image
+1. 在本地启动docker
+cd Cloud-Study-Group/ipsec
+docker run -d --cap-add=NET_ADMIN --net=host -v $PWD/config/left.conf:/etc/ipsec.conf  -v $PWD/config/left.secrets:/etc/ipsec.secrets --name=strongswan paulmao1/tools:ipsec
+2. 在远端启动docker 
+docker run -d --cap-add=NET_ADMIN --net=host -v $PWD/config/right.conf:/etc/ipsec.conf  -v $PWD/config/right.secrets:/etc/ipsec.secrets --name=strongswan paulmao1/tools:ipsec
+
+五、发起IPsec连接
+docker exec -it strongswan ipsec up mysubnet
