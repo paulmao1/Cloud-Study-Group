@@ -21,10 +21,12 @@ left指的是local 机器，right指的是remote机器
 
 四、在二端分别启用Docker image
 1. 在本地启动docker
-cd Cloud-Study-Group/ipsec
+cd Cloud-Study-Group/IPSec
 docker run -d --cap-add=NET_ADMIN --net=host -v $PWD/config/left.conf:/etc/ipsec.conf  -v $PWD/config/left.secrets:/etc/ipsec.secrets --name=strongswan paulmao1/tools:ipsec
 2. 在远端启动docker 
 docker run -d --cap-add=NET_ADMIN --net=host -v $PWD/config/right.conf:/etc/ipsec.conf  -v $PWD/config/right.secrets:/etc/ipsec.secrets --name=strongswan paulmao1/tools:ipsec
 
-五、发起IPsec连接
+五、IPsec连接操作
 docker exec -it strongswan ipsec up mysubnet
+docker exec -it strongswan ipsec status
+docker exec -it strongswan ipsec down mysubnet
