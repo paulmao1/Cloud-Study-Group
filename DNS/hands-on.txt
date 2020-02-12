@@ -1,0 +1,21 @@
+﻿一、安装软件
+1. 在labstage上创建Ubuntu 18.04 
+2. 安装docker
+curl -fsSL https://get.docker.com/ | sh
+systemctl enable docker
+systemctl start docker
+3. 安装docker compose
+apt-get install -y docker-compose
+4. 安装Git
+apt-get install -y git
+
+二、下载文件
+1. 创建目录
+mkdir demo
+cd demo
+2. 下载Dcokerfile 和docker compose
+git clone https://github.com/paulmao1/Cloud-Study-Group.git
+
+三、启用Docker image
+cd Cloud-Study-Group/dns
+docker run -d  -v $PWD/config/unbound.conf /etc/unbound/unbound.conf --name=unbound paulmao1/tools:dns
