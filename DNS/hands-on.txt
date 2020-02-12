@@ -17,5 +17,5 @@ cd demo
 git clone https://github.com/paulmao1/Cloud-Study-Group.git
 
 三、启用Docker image
-cd Cloud-Study-Group/dns
-docker run -d  -v $PWD/config/unbound.conf /etc/unbound/unbound.conf --name=unbound paulmao1/tools:dns
+cd Cloud-Study-Group/DNS
+docker run -d  -v $PWD/config/unbound.conf:/etc/unbound/unbound.conf -p 53:53/udp --name=unbound paulmao1/tools:dns
