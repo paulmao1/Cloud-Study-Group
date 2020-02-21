@@ -1,0 +1,44 @@
+version: '2.2'
+networks:
+  R1R2:
+    ipam:
+      config:
+        - subnet: 192.168.12.0/24
+  R1R3:
+    ipam:
+      config:
+        - subnet: 192.168.13.0/24
+services:
+  r01:      
+    image: paulmao1/tools:router
+    hostname: r01
+    container_name: r01
+    cap_add:
+      - ALL
+    ports:
+      - "179:179"
+    networks:
+      R1R2:
+        ipv4_address: 192.168.12.2
+      R1R3:
+        ipv4_address: 192.168.13.2
+
+  r02:      
+    image: paulmao1/tools:router 
+    hostname: r02
+    container_name: r02
+    cap_add:
+      - ALL
+    networks:
+      R1R2:
+        ipv4_address: 192.168.12.3
+
+  r03:      
+    image: paulmao1/tools:router
+    hostname: r03
+    container_name: r03
+    cap_add:
+      - ALL
+    networks:
+      R1R3:
+        ipv4_address: 192.168.13.3
