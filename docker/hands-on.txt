@@ -1,0 +1,42 @@
+﻿一、安装软件
+1. 在labstage上创建Ubuntu 18.04 
+2. 安装docker
+curl -fsSL https://get.docker.com/ | sh
+systemctl enable docker
+systemctl start docker
+3. 安装docker compose
+apt-get install -y docker-compose
+4. 安装Git
+apt-get install -y git
+
+二、下载文件
+1. 创建目录
+mkdir demo
+cd demo
+2. 下载Dcokerfile 和docker compose
+git clone https://github.com/paulmao1/Cloud-Study-Group.git
+
+三、建立Docker image
+1. 建立freeraduis docker
+cd Cloud-Study-Group/docker
+docker build -t paulmao1/tools:freeradius .
+2. 运行freeraduis docker
+docker run -d -p 1812:1812/udp paulmao1/tools:freeradius
+3. 测试freeraduis docker
+
+四、建立Docker compose
+1. 建立Tree-tier服务器
+cd Cloud-Study-Group/docker
+docker-compose up
+2. 测试Web
+
+
+Accept-Auth: badger,Wlid1.1,Bearer
+
+Bearer
+http.a
+
+
+kubectl自动补全
+source <(kubectl completion bash)
+
