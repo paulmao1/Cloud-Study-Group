@@ -1,0 +1,18 @@
+一、加载Ubuntu 18.0.4 
+二、下载Demo脚本
+1. git clone https://github.com/paulmao1/Cloud-Study-Group.git
+2. cd Cloud-Study-Group/CloudWatch
+二、自定义Metric
+1. 设置AWS CLI,配置Service Account
+2. bash metric.sh
+三、配置CloudWatch agent:
+1. bash CWAgent.sh
+2. /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+3. /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s
+4. service amazon-cloudwatch-agent restart
+四、收集Nginx 404 log
+1.  bash Nginx404.sh 
+2.  创建Role并绑定到EC2
+
+
+

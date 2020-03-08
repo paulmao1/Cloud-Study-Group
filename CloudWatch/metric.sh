@@ -1,4 +1,8 @@
 #!/bin/sh
+#install AWS CLI
+apt update -y
+apt install awscli
+#Testing scripts
 remote_ip=172.31.1.1
 ping_count=5
 tc qdisc add dev eth0 root handle 1: htb
